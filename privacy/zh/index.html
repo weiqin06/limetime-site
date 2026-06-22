@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LimeTime — 隐私政策</title>
+<style>
+  :root { --ink:#1a2b22; --muted:#5c6b63; --accent:#2f9e44; --line:#e3ece6; --bg:#ffffff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.75; }
+  .wrap { max-width:760px; margin:0 auto; padding:40px 22px 80px; }
+  header { border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:8px; }
+  .brand { font-size:22px; font-weight:800; color:var(--accent); letter-spacing:-0.2px; }
+  h1 { font-size:28px; margin:22px 0 4px; }
+  h2 { font-size:19px; margin:34px 0 8px; }
+  p, li { color:var(--ink); }
+  .meta { color:var(--muted); font-size:14px; }
+  a { color:var(--accent); }
+  ul { padding-left:22px; }
+  li { margin:5px 0; }
+  .note { margin-top:40px; padding:14px 16px; background:#f5f9f6; border:1px solid var(--line); border-radius:10px; color:var(--muted); font-size:13px; }
+  .lang { font-size:14px; }
+  footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">LimeTime</div>
+    <div class="lang"><a href="../../">首页</a> · <a href="../">English</a> · <strong>简体中文</strong></div>
+  </header>
+
+  <h1>隐私政策</h1>
+  <p class="meta">生效日期：2026年6月21日 · 最近更新：2026年6月21日</p>
+
+  <p>LimeTime（“本应用”“我们”）是一款家庭时间管理应用，帮助家长或监护人为孩子运营一个“时间银行”——以虚拟余额的形式存入、支出并记录屏幕使用时间。本政策说明本应用收集哪些数据、如何使用，以及您的选择。我们在设计上力求将数据收集降到最低。</p>
+
+  <h2>数据的控制者</h2>
+  <p>本应用由创建账户的家长/监护人（“账户所有者”）操作。账户所有者对其录入的、关于孩子的任何信息负责。孩子不会自行创建账户，也不会直接向我们提供信息。</p>
+
+  <h2>我们收集的信息</h2>
+  <p><strong>账户信息（由家长提供）：</strong></p>
+  <ul>
+    <li>电子邮箱与密码，用于创建并保护您的账户。</li>
+    <li>家庭名称以及可选的家长 PIN（PIN 仅以单向哈希形式存储）。</li>
+  </ul>
+  <p><strong>孩子档案信息（由家长录入、关于孩子的信息）：</strong></p>
+  <ul>
+    <li>您自行设置的昵称、头像（表情符号）、配色主题，以及可选的孩子密码（仅以单向哈希存储）。</li>
+    <li>我们<strong>不会</strong>要求孩子的真实姓名、出生日期、照片、住址、电话号码或精确位置。请勿录入孩子的法定全名或其他敏感标识信息。</li>
+  </ul>
+  <p><strong>您在应用内产生的活动数据：</strong></p>
+  <ul>
+    <li>时间银行余额与交易记录（存入、支出、计时）、定时任务、契约/任务以及时间申请。</li>
+    <li>由上述活动生成的应用内通知。</li>
+  </ul>
+  <p><strong>设备与技术信息：</strong></p>
+  <ul>
+    <li>若您启用通知，将使用推送通知令牌（通过 Expo）及您的语言偏好，仅用于向您的设备发送提醒与通知。</li>
+    <li>您可选择创建的硬件“设备令牌”，用于连接实体计时器；这些令牌以哈希密钥形式存储。</li>
+  </ul>
+  <p>我们<strong>不会</strong>收集精确位置、通讯录、照片、广告标识符或浏览记录。本应用<strong>不含任何第三方广告，也不含任何第三方分析或跟踪 SDK。</strong></p>
+
+  <h2>我们如何使用信息</h2>
+  <ul>
+    <li>提供核心服务：验证您的身份、存储家庭时间银行数据并在您的多台设备间同步。</li>
+    <li>发送您启用的通知（例如申请已批准、计时结束）。</li>
+    <li>保障服务安全、防止滥用。</li>
+  </ul>
+  <p>我们<strong>不会</strong>出售您的数据、与广告商共享数据，也不会将其用于广告或跨应用跟踪。</p>
+
+  <h2>数据存储位置</h2>
+  <p>数据通过云后端服务商 <strong>Supabase</strong> 存储于安全的基础设施上。数据在传输过程中受到保护（HTTPS/TLS），并通过按账户隔离的安全规则限制访问，确保不同家庭之间无法相互访问数据。推送通知通过 <strong>Expo</strong> 的推送服务发送。</p>
+
+  <h2>儿童隐私</h2>
+  <p>LimeTime 旨在由家长或监护人设置并操作。关于孩子的信息由家长录入并由家长控制。我们不会在明知的情况下直接向孩子收集个人信息。由于本应用由家长操作，家长可随时在应用内查看、编辑或删除孩子的档案。若您认为有孩子在没有家长参与的情况下直接向我们提供了信息，请与我们联系，我们将予以删除。</p>
+
+  <h2>您的选择与权利</h2>
+  <ul>
+    <li><strong>查看与编辑：</strong>您可随时在应用内查看并编辑家庭与孩子档案。</li>
+    <li><strong>删除账户：</strong>您可在应用内通过 <strong>家长 → 设置 → 删除账户</strong> 永久删除您的账户及全部相关数据。此操作会清除您的家庭、所有孩子档案、余额、历史记录、契约、定时任务与令牌，且无法撤销。</li>
+    <li><strong>通知：</strong>您可随时在设备设置中关闭通知。</li>
+  </ul>
+
+  <h2>数据保留</h2>
+  <p>在您的账户处于活跃状态期间，我们会保留您的数据。当您删除账户后，相关数据将从我们的活跃系统中移除。</p>
+
+  <h2>政策变更</h2>
+  <p>我们可能会不时更新本政策。重大变更将通过更新上方“最近更新”日期反映，并在适当情况下以应用内提示告知。</p>
+
+  <h2>联系方式</h2>
+  <p>有关数据的问题或请求：<br>邮箱：<a href="mailto:weiqin06@gmail.com">weiqin06@gmail.com</a></p>
+
+  <div class="note">本文档仅供一般参考，不构成法律意见。建议请合格的专业人士根据您所在司法辖区（如 COPPA、GDPR、CCPA）进行审阅。</div>
+
+  <footer>© 2026 LimeTime · <a href="../../">首页</a> · <a href="../../support/">支持</a></footer>
+</div>
+</body>
+</html>
