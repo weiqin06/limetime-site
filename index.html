@@ -3,30 +3,298 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LimeTime</title>
+<title>LimeTime — the family time bank</title>
+<meta name="description" content="LimeTime turns screen time into something kids earn, save, and spend. A family time bank with chores, routines, timers, and parent controls. English & 简体中文.">
+<meta property="og:title" content="LimeTime — the family time bank">
+<meta property="og:description" content="Turn screen time into something kids earn. Chores, routines, timers, and clear balances for the whole family.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://limetime.app/">
 <style>
-  :root { --ink:#1a2b22; --muted:#5c6b63; --accent:#2f9e44; --line:#e3ece6; --bg:#ffffff; }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; }
-  .wrap { max-width:620px; margin:0 auto; padding:72px 22px 80px; text-align:center; }
-  .brand { font-size:40px; font-weight:800; color:var(--accent); letter-spacing:-0.6px; }
-  .tag { color:var(--muted); font-size:17px; margin-top:6px; }
-  .links { margin-top:40px; display:flex; flex-direction:column; gap:12px; align-items:stretch; }
-  .links a { display:block; padding:15px 18px; border:1px solid var(--line); border-radius:12px; text-decoration:none; color:var(--ink); font-weight:600; background:#f5f9f6; }
-  .links a:hover { border-color:var(--accent); }
-  footer { margin-top:48px; color:var(--muted); font-size:13px; }
+  :root{
+    --lime:#2f9e44; --lime-deep:#1f7a32; --bright:#7CB518; --fruit:#73B82B;
+    --cream:#F1F8DD; --ink:#15261b; --muted:#5c6b63; --line:#e2ece1; --white:#fff;
+    --teal:#0a7ea4; --sunset:#ef6c4d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.6;background:var(--white)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .btn{display:inline-block;font-weight:700;border-radius:14px;padding:14px 22px;cursor:pointer;border:none;font-size:16px}
+  .btn-primary{background:var(--lime);color:#fff}
+  .btn-primary:hover{background:var(--lime-deep)}
+  .btn-ghost{background:transparent;color:var(--lime-deep);border:1.5px solid #cfe3c2}
+  .btn-ghost:hover{border-color:var(--lime)}
+
+  header.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav .row{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:var(--lime-deep)}
+  .nav-actions{display:flex;align-items:center;gap:14px}
+  .lang-toggle{font-weight:700;font-size:14px;border:1px solid var(--line);border-radius:20px;padding:6px 12px;background:#fff;cursor:pointer;color:var(--ink)}
+  .nav-links{display:flex;gap:22px;font-weight:600;color:var(--muted)}
+  .nav-links a:hover{color:var(--lime-deep)}
+
+  section{padding:72px 0}
+  .hero{background:var(--cream)}
+  .hero .grid{display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+  .hero .col-text{flex:1 1 380px}
+  .hero .col-art{flex:1 1 320px;display:flex;justify-content:center}
+  .eyebrow{display:inline-block;background:#e4f3d2;color:var(--lime-deep);font-weight:700;font-size:13px;padding:6px 12px;border-radius:20px;margin-bottom:18px}
+  h1{font-size:46px;line-height:1.1;letter-spacing:-1px;margin-bottom:18px}
+  .lead{font-size:19px;color:var(--muted);margin-bottom:28px;max-width:34em}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .store-note{font-size:13px;color:var(--muted);margin-top:14px}
+
+  h2{font-size:32px;letter-spacing:-.5px;text-align:center;margin-bottom:12px}
+  .section-sub{text-align:center;color:var(--muted);font-size:17px;max-width:36em;margin:0 auto 44px}
+
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+  .card .ic{width:46px;height:46px;border-radius:12px;background:#eaf6d8;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px}
+  .card h3{font-size:18px;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:15px}
+
+  .how{background:var(--cream)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{text-align:center;padding:10px}
+  .step .num{width:44px;height:44px;border-radius:50%;background:var(--lime);color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+  .step h3{font-size:18px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:15px}
+
+  .shots{display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+
+  .phone{width:248px;border-radius:38px;background:#1d2b22;padding:10px;box-shadow:0 18px 40px rgba(20,40,25,.16)}
+  .screen{border-radius:30px;overflow:hidden;background:#fff;height:506px;display:flex;flex-direction:column;position:relative}
+  .st-bar{height:30px;display:flex;align-items:center;justify-content:center}
+  .st-bar .notch{width:96px;height:18px;background:#1d2b22;border-radius:0 0 14px 14px}
+  .app-head{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px}
+  .app-brand{display:flex;align-items:center;gap:6px;font-weight:800;color:var(--lime-deep);font-size:15px}
+  .app-body{flex:1;overflow:hidden;padding:0 16px}
+  .tabbar{display:flex;justify-content:space-around;padding:10px 6px 14px;border-top:1px solid #eef2ee;font-size:10px;color:#9aa5ab}
+  .tabbar .tab{display:flex;flex-direction:column;align-items:center;gap:3px}
+  .tabbar .tab.active{color:var(--teal);font-weight:700}
+  .tabbar .tab span.i{font-size:17px}
+
+  .balance-card{background:var(--teal);color:#fff;border-radius:20px;padding:22px;text-align:center;margin:8px 0 16px}
+  .balance-card .big{font-size:42px;font-weight:800;letter-spacing:-1px}
+  .balance-card .lbl{opacity:.9;font-size:13px}
+  .timer-btn{background:#fff;color:var(--teal);font-weight:800;border-radius:14px;padding:13px;text-align:center;font-size:15px}
+  .mini-title{font-size:12px;font-weight:800;color:#9aa5ab;text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px}
+  .row-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f4f1}
+  .row-item .av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px}
+  .row-item .nm{flex:1;font-weight:700;font-size:14px}
+  .row-item .amt{font-weight:800;font-size:14px}
+  .chip{font-size:11px;font-weight:800;padding:5px 9px;border-radius:10px}
+  .kidcard{display:flex;align-items:center;gap:12px;background:#f4fbe6;border-radius:16px;padding:13px;margin-bottom:10px}
+  .kidcard .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:21px;color:#fff}
+  .kidcard .nm{flex:1}
+  .kidcard .nm b{display:block;font-size:15px}
+  .kidcard .nm small{color:var(--muted)}
+  .contract{border:1px solid #eef2ee;border-radius:16px;padding:14px;margin-bottom:10px}
+  .contract .t{font-weight:700;font-size:14px;display:flex;justify-content:space-between}
+  .contract .reward{color:var(--lime-deep);font-weight:800}
+  .contract .meta{font-size:12px;color:var(--muted);margin-top:4px}
+
+  .privacy{background:var(--lime-deep);color:#fff;text-align:center}
+  .privacy h2{color:#fff}
+  .privacy p{color:#dff0d4;max-width:34em;margin:0 auto 8px;font-size:17px}
+  .privacy .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .privacy .pill{background:rgba(255,255,255,.12);border-radius:20px;padding:9px 16px;font-weight:700;font-size:14px}
+
+  .cta{background:var(--cream);text-align:center}
+  .cta h2{margin-bottom:10px}
+
+  footer{background:#15261b;color:#bcd0c0;padding:40px 0;font-size:14px}
+  footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  footer a{color:#bcd0c0}
+  footer a:hover{color:#fff}
+  footer .flinks{display:flex;gap:20px;flex-wrap:wrap}
+
+  @media(max-width:760px){
+    h1{font-size:34px}.features,.steps{grid-template-columns:1fr}
+    section{padding:52px 0}.nav-links{display:none}
+    .hero .grid{gap:30px}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">LimeTime</div>
-  <div class="tag">Bank the time, spend it well. · 把时间存起来，明智地花。</div>
-  <div class="links">
-    <a href="privacy/">Privacy Policy (English)</a>
-    <a href="privacy/zh/">隐私政策（简体中文）</a>
-    <a href="support/">Support / 支持</a>
+
+<header class="nav">
+  <div class="wrap row">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><path d="M40 16 C45 9 53 9 56 15 C54 23 44 25 40 16 Z" fill="#3E7D1E"/><circle cx="31" cy="35" r="23" fill="#73B82B"/><circle cx="31" cy="35" r="23" fill="none" stroke="#5BA21D" stroke-width="1.5"/><g transform="translate(31,35)" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="0" y1="-19" x2="0" y2="-15"/><line x1="19" y1="0" x2="15" y2="0"/><line x1="0" y1="19" x2="0" y2="15"/><line x1="-19" y1="0" x2="-15" y2="0"/></g><line x1="31" y1="35" x2="21" y2="29" stroke="#fff" stroke-width="3" stroke-linecap="round"/><line x1="31" y1="35" x2="44" y2="27" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="31" cy="35" r="2.4" fill="#2E5E14"/></svg>
+      LimeTime
+    </div>
+    <div class="nav-actions">
+      <nav class="nav-links">
+        <a href="#features" data-en="Features" data-zh="功能">Features</a>
+        <a href="#how" data-en="How it works" data-zh="原理">How it works</a>
+        <a href="#privacy" data-en="Privacy" data-zh="隐私">Privacy</a>
+      </nav>
+      <button class="lang-toggle" id="langBtn">中文</button>
+    </div>
   </div>
-  <footer>© 2026 LimeTime · <a href="mailto:weiqin06@gmail.com" style="color:var(--muted)">weiqin06@gmail.com</a></footer>
-</div>
+</header>
+
+<section class="hero">
+  <div class="wrap grid">
+    <div class="col-text">
+      <span class="eyebrow" data-en="Coming soon to the App Store" data-zh="即将登陆 App Store">Coming soon to the App Store</span>
+      <h1 data-en="Turn screen time into something kids earn." data-zh="把屏幕时间，变成孩子赚来的奖励。">Turn screen time into something kids earn.</h1>
+      <p class="lead" data-en="LimeTime is a family time bank. Kids build up a balance with chores and routines, then spend it on screen time with a built-in timer. Fair, simple, and visible to everyone." data-zh="LimeTime 是一个家庭时间银行。孩子通过做家务和日常任务积累余额，再用内置计时器兑换屏幕时间。公平、简单，全家一目了然。">LimeTime is a family time bank. Kids build up a balance with chores and routines, then spend it on screen time with a built-in timer. Fair, simple, and visible to everyone.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#how" data-en="See how it works" data-zh="了解原理">See how it works</a>
+        <a class="btn btn-ghost" href="#features" data-en="Explore features" data-zh="查看功能">Explore features</a>
+      </div>
+      <div class="store-note" data-en="Free to start · English & 简体中文 · No ads, ever." data-zh="免费开始 · 支持中英文 · 永不投放广告。">Free to start · English & 简体中文 · No ads, ever.</div>
+    </div>
+    <div class="col-art">
+      <div class="phone">
+        <div class="screen">
+          <div class="st-bar"><div class="notch"></div></div>
+          <div class="app-head"><div class="app-brand">LimeTime</div><div style="font-size:13px;color:#9aa5ab">🔔</div></div>
+          <div class="app-body">
+            <div style="text-align:center;font-weight:800;margin:6px 0 2px" data-en="Hi, Mia! 🦊" data-zh="你好，Mia！🦊">Hi, Mia! 🦊</div>
+            <div class="balance-card">
+              <div class="lbl" data-en="time in your bank" data-zh="你的时间余额">time in your bank</div>
+              <div class="big">2:45</div>
+            </div>
+            <div class="timer-btn" data-en="▶  Start timer" data-zh="▶  开始计时">▶  Start timer</div>
+            <div class="mini-title" data-en="Recent" data-zh="最近">Recent</div>
+            <div class="row-item"><div class="av" style="background:#eaf6d8">📚</div><div class="nm" data-en="Read 20 min" data-zh="阅读 20 分钟">Read 20 min</div><div class="amt" style="color:var(--lime-deep)">+20m</div></div>
+            <div class="row-item"><div class="av" style="background:#fde7e1">📺</div><div class="nm" data-en="Screen time" data-zh="屏幕时间">Screen time</div><div class="amt" style="color:#d9534f">−35m</div></div>
+          </div>
+          <div class="tabbar"><div class="tab active"><span class="i">🏦</span><span data-en="Bank" data-zh="银行">Bank</span></div><div class="tab"><span class="i">📨</span><span data-en="Ask" data-zh="申请">Ask</span></div><div class="tab"><span class="i">📜</span><span data-en="Tasks" data-zh="契约">Tasks</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2 data-en="Everything a family needs to make screen time fair" data-zh="让屏幕时间变得公平，全家所需的一切">Everything a family needs to make screen time fair</h2>
+    <p class="section-sub" data-en="No more arguments about devices — just a shared system everyone can see." data-zh="不再为用手机争论——一个全家都看得见的共享系统。">No more arguments about devices — just a shared system everyone can see.</p>
+    <div class="features">
+      <div class="card"><div class="ic">🏦</div><h3 data-en="A clear time bank" data-zh="清晰的时间银行">A clear time bank</h3><p data-en="Every kid has a visible balance — no guesswork, no debates." data-zh="每个孩子都有可见的余额——不用猜，不用争。">Every kid has a visible balance — no guesswork, no debates.</p></div>
+      <div class="card"><div class="ic">🧹</div><h3 data-en="Earn with chores & routines" data-zh="做家务与任务来赚取">Earn with chores & routines</h3><p data-en="Reward good habits with one-off contracts and recurring routine deposits." data-zh="用一次性契约和周期性定时存入，奖励好习惯。">Reward good habits with one-off contracts and recurring routine deposits.</p></div>
+      <div class="card"><div class="ic">⏱️</div><h3 data-en="Spend with a timer" data-zh="用计时器消费">Spend with a timer</h3><p data-en="Start the screen-time timer and it withdraws from the balance automatically." data-zh="启动屏幕时间计时器，自动从余额扣减。">Start the screen-time timer and it withdraws from the balance automatically.</p></div>
+      <div class="card"><div class="ic">🔒</div><h3 data-en="Parent controls" data-zh="家长控制">Parent controls</h3><p data-en="A PIN-protected parent mode to approve requests, adjust time, and manage kids." data-zh="PIN 保护的家长模式，可批准申请、调整时间、管理孩子。">A PIN-protected parent mode to approve requests, adjust time, and manage kids.</p></div>
+      <div class="card"><div class="ic">🌏</div><h3 data-en="English & 简体中文" data-zh="支持中英文">English & 简体中文</h3><p data-en="Fully localized interface and notifications, switchable any time." data-zh="界面与通知完整本地化，可随时切换。">Fully localized interface and notifications, switchable any time.</p></div>
+      <div class="card"><div class="ic">🛡️</div><h3 data-en="Private by design" data-zh="注重隐私">Private by design</h3><p data-en="No ads, no third-party tracking, and you can delete everything any time." data-zh="无广告、无第三方跟踪，且可随时删除全部数据。">No ads, no third-party tracking, and you can delete everything any time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <div class="wrap">
+    <h2 data-en="How LimeTime works" data-zh="LimeTime 如何运作">How LimeTime works</h2>
+    <p class="section-sub" data-en="Set up your family bank in minutes." data-zh="几分钟搭好你的家庭时间银行。">Set up your family bank in minutes.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3 data-en="Create your family bank" data-zh="创建家庭银行">Create your family bank</h3><p data-en="Add each kid with their own avatar, color, and passcode." data-zh="为每个孩子添加专属头像、配色和密码。">Add each kid with their own avatar, color, and passcode.</p></div>
+      <div class="step"><div class="num">2</div><h3 data-en="Kids earn time" data-zh="孩子赚取时间">Kids earn time</h3><p data-en="Complete chores and routines to deposit minutes into the bank." data-zh="完成家务和日常任务，把分钟数存入银行。">Complete chores and routines to deposit minutes into the bank.</p></div>
+      <div class="step"><div class="num">3</div><h3 data-en="Spend on screen time" data-zh="兑换屏幕时间">Spend on screen time</h3><p data-en="Start the timer; balances update live for the whole family." data-zh="启动计时器；余额为全家实时更新。">Start the timer; balances update live for the whole family.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="wrap">
+    <h2 data-en="See it in action" data-zh="实际效果">See it in action</h2>
+    <p class="section-sub" data-en="A friendly kid view and full parent controls — in one app." data-zh="友好的孩子视图与完整的家长控制——同一个应用。">A friendly kid view and full parent controls — in one app.</p>
+    <div class="shots">
+
+      <div class="phone"><div class="screen">
+        <div class="st-bar"><div class="notch"></div></div>
+        <div class="app-head"><div class="app-brand">LimeTime</div><div style="font-size:11px;color:var(--teal);font-weight:700" data-en="Parent" data-zh="家长">Parent</div></div>
+        <div class="app-body">
+          <div class="mini-title" data-en="Kids" data-zh="孩子">Kids</div>
+          <div class="kidcard"><div class="av" style="background:#0a7ea4">🦊</div><div class="nm"><b>Mia</b><small data-en="2h 45m left" data-zh="剩余 2小时45分">2h 45m left</small></div><div class="chip" style="background:#e6f4ea;color:var(--lime-deep)">+</div></div>
+          <div class="kidcard"><div class="av" style="background:#ef6c4d">🐰</div><div class="nm"><b>Leo</b><small data-en="1h 10m left" data-zh="剩余 1小时10分">1h 10m left</small></div><div class="chip" style="background:#e6f4ea;color:var(--lime-deep)">+</div></div>
+          <div class="kidcard"><div class="av" style="background:#7c4dff">🐻</div><div class="nm"><b>Ada</b><small data-en="40m left" data-zh="剩余 40分钟">40m left</small></div><div class="chip" style="background:#e6f4ea;color:var(--lime-deep)">+</div></div>
+        </div>
+        <div class="tabbar"><div class="tab active"><span class="i">🏦</span><span data-en="Bank" data-zh="银行">Bank</span></div><div class="tab"><span class="i">📨</span><span data-en="Requests" data-zh="申请">Requests</span></div><div class="tab"><span class="i">⚙️</span><span data-en="Settings" data-zh="设置">Settings</span></div></div>
+      </div></div>
+
+      <div class="phone"><div class="screen">
+        <div class="st-bar"><div class="notch"></div></div>
+        <div class="app-head"><div class="app-brand">LimeTime</div><div style="font-size:13px;color:#9aa5ab">📜</div></div>
+        <div class="app-body">
+          <div class="mini-title" data-en="Contracts" data-zh="契约">Contracts</div>
+          <div class="contract"><div class="t"><span data-en="🐶 Walk the dog" data-zh="🐶 遛狗">🐶 Walk the dog</span><span class="reward">+30m</span></div><div class="meta" data-en="Active · for Leo" data-zh="进行中 · Leo">Active · for Leo</div></div>
+          <div class="contract"><div class="t"><span data-en="📚 Read 20 minutes" data-zh="📚 阅读 20 分钟">📚 Read 20 minutes</span><span class="reward">+20m</span></div><div class="meta" data-en="Active · any kid" data-zh="进行中 · 任意孩子">Active · any kid</div></div>
+          <div class="contract"><div class="t"><span data-en="🧹 Tidy your room" data-zh="🧹 整理房间">🧹 Tidy your room</span><span class="reward">+25m</span></div><div class="meta" data-en="Awaiting agreement" data-zh="等待确认">Awaiting agreement</div></div>
+        </div>
+        <div class="tabbar"><div class="tab"><span class="i">🏦</span><span data-en="Bank" data-zh="银行">Bank</span></div><div class="tab active"><span class="i">📜</span><span data-en="Contracts" data-zh="契约">Contracts</span></div><div class="tab"><span class="i">📊</span><span data-en="Statement" data-zh="明细">Statement</span></div></div>
+      </div></div>
+
+      <div class="phone"><div class="screen">
+        <div class="st-bar"><div class="notch"></div></div>
+        <div class="app-head"><div class="app-brand">LimeTime</div><div style="font-size:13px;color:#9aa5ab">📊</div></div>
+        <div class="app-body">
+          <div class="mini-title" data-en="Statement · Mia" data-zh="明细 · Mia">Statement · Mia</div>
+          <div class="row-item"><div class="av" style="background:#e6f4ea">🏆</div><div class="nm" data-en="Contract reward" data-zh="契约奖励">Contract reward</div><div class="amt" style="color:var(--lime-deep)">+30m</div></div>
+          <div class="row-item"><div class="av" style="background:#eaf6d8">🔄</div><div class="nm" data-en="Routine bonus" data-zh="定时奖励">Routine bonus</div><div class="amt" style="color:var(--lime-deep)">+15m</div></div>
+          <div class="row-item"><div class="av" style="background:#fde7e1">📺</div><div class="nm" data-en="Screen time used" data-zh="已用屏幕时间">Screen time used</div><div class="amt" style="color:#d9534f">−35m</div></div>
+          <div class="row-item"><div class="av" style="background:#e6f4ea">➕</div><div class="nm" data-en="Approved request" data-zh="申请已批准">Approved request</div><div class="amt" style="color:var(--lime-deep)">+10m</div></div>
+        </div>
+        <div class="tabbar"><div class="tab"><span class="i">🏦</span><span data-en="Bank" data-zh="银行">Bank</span></div><div class="tab"><span class="i">📜</span><span data-en="Contracts" data-zh="契约">Contracts</span></div><div class="tab active"><span class="i">📊</span><span data-en="Statement" data-zh="明细">Statement</span></div></div>
+      </div></div>
+
+    </div>
+  </div>
+</section>
+
+<section id="privacy" class="privacy">
+  <div class="wrap">
+    <h2 data-en="Built private, made for families" data-zh="为隐私而生，为家庭而做">Built private, made for families</h2>
+    <p data-en="LimeTime has no ads and no third-party tracking. A parent sets up and controls everything, and can permanently delete the account and all data right inside the app." data-zh="LimeTime 没有广告，也没有第三方跟踪。由家长设置并掌控一切，并可在应用内永久删除账户及全部数据。">LimeTime has no ads and no third-party tracking. A parent sets up and controls everything, and can permanently delete the account and all data right inside the app.</p>
+    <div class="pills">
+      <div class="pill" data-en="🚫 No ads" data-zh="🚫 无广告">🚫 No ads</div>
+      <div class="pill" data-en="🛰️ No tracking" data-zh="🛰️ 无跟踪">🛰️ No tracking</div>
+      <div class="pill" data-en="🗑️ Delete anytime" data-zh="🗑️ 随时删除">🗑️ Delete anytime</div>
+      <div class="pill"><a href="/privacy/" data-en="Read our Privacy Policy →" data-zh="阅读隐私政策 →">Read our Privacy Policy →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 data-en="Make screen time something everyone agrees on" data-zh="让屏幕时间成为全家的约定">Make screen time something everyone agrees on</h2>
+    <p class="section-sub" data-en="LimeTime is coming soon to the App Store." data-zh="LimeTime 即将登陆 App Store。">LimeTime is coming soon to the App Store.</p>
+    <a class="btn btn-primary" href="/support/" data-en="Get in touch" data-zh="联系我们">Get in touch</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <div>© 2026 LimeTime · <a href="mailto:weiqin06@gmail.com">weiqin06@gmail.com</a></div>
+    <div class="flinks">
+      <a href="/privacy/" data-en="Privacy (EN)" data-zh="隐私政策（英文）">Privacy (EN)</a>
+      <a href="/privacy/zh/" data-en="隐私 (中文)" data-zh="隐私政策（中文）">隐私 (中文)</a>
+      <a href="/support/" data-en="Support" data-zh="支持">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='lt_lang';
+    var saved=localStorage.getItem(KEY);
+    var lang=saved||((navigator.language||'en').toLowerCase().indexOf('zh')===0?'zh':'en');
+    function apply(l){
+      document.documentElement.lang = (l==='zh')?'zh-Hans':'en';
+      document.querySelectorAll('[data-en]').forEach(function(el){
+        var v=el.getAttribute('data-'+l); if(v!==null) el.textContent=v;
+      });
+      document.getElementById('langBtn').textContent = (l==='zh')?'EN':'中文';
+      localStorage.setItem(KEY,l);
+      lang=l;
+    }
+    document.getElementById('langBtn').addEventListener('click',function(){apply(lang==='zh'?'en':'zh')});
+    apply(lang);
+  })();
+</script>
+
 </body>
 </html>
